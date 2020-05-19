@@ -71,7 +71,10 @@ const Tile = ({
         {(config.misc.showNearbyMines || revealed) && <i>{nearbyMines}</i>}
 
         {withMine && (
-          <Mine show={config.misc.showMines || revealed || detonated} />
+          <Mine
+            show={config.misc.showMines || revealed || detonated}
+            selectedMode={config.selectedMode}
+          />
         )}
       </TileBox>
     </Box>

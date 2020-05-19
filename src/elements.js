@@ -165,6 +165,21 @@ export const MineBox = styled.div`
   }}
 `
 
+export const DoomMine = styled(MineBox)`
+  background: url(doom-mine.png);
+  background-size: contain;
+
+  ${({ show }) => {
+    let output = ''
+    if (show)
+      output += `
+      opacity: 1;
+      visibility: visible;
+    `
+    return output
+  }}
+`
+
 export const Modal = styled.div`
   background: rgba(0, 0, 0, 0.8);
   z-index: 100;
