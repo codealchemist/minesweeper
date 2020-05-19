@@ -33,12 +33,23 @@ const Board = () => {
   }
 
   const onMine = () => {
-    console.log('ON MINE')
+    console.log('BOOOOOOM!')
+
+    // Display all mines.
     setGameState({
       ...gameState,
-      lost: true,
-      showModal: true
+      detonateAll: true
     })
+
+    // Let the user view all the mess before displaying the end game modal :p
+    setTimeout(() => {
+      setGameState({
+        ...gameState,
+        lost: true,
+        showModal: true,
+        detonateAll: true
+      })
+    }, 3000)
   }
 
   const onReveal = ({ pos, nearbyMines }) => {
@@ -175,6 +186,7 @@ const Board = () => {
             revealed={gameState.revealedTiles.includes(i)}
             flagged={gameState.flaggedTiles.has(i)}
             withMine={gameState.plantedMines.has(i)}
+            detonated={gameState.detonateAll}
           />
         ))}
       </GameBoard>

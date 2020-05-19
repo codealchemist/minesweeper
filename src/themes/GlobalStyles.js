@@ -131,6 +131,25 @@ export const GlobalStyles = createGlobalStyle`
   .MuiSelect-select:focus {
     background-color: ${({ theme }) => theme.background100} !important;
   }
+
+  @keyframes pulse {
+    0% {
+      background-color: ${({ theme }) => theme.highlight200};
+    }
+    100% {
+      background-color: ${({ theme }) => theme.background200};
+    }
+  }
+
+  @keyframes detonation {
+    0% {
+      filter: blur(1px) brightness(2);
+    }
+    100% {
+      background-color: ${({ theme }) => theme.highlightAlt300};
+      filter: blur(0) brightness(1);
+    }
+  }
 `
 
 export default GlobalStyles

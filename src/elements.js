@@ -66,8 +66,9 @@ export const TileBox = styled.div`
   width: 100%;
   height: 100%;
   cursor: pointer;
-  position: relative;
+  position: absolute;
   font-size: 150%;
+  transition: all 1s ease;
 
   p {
     margin: 0;
@@ -95,7 +96,7 @@ export const TileBox = styled.div`
     opacity: 0.5;
   }
 
-  ${({ theme, revealed, selectedMode }) => {
+  ${({ theme, revealed, selectedMode, detonated, highlighted }) => {
     let output = `
       background: ${theme.background200};
       border: 1px solid ${theme.background300};
@@ -123,6 +124,12 @@ export const TileBox = styled.div`
     if (selectedMode === 1) output += 'font-size: 100%;'
     if (selectedMode === 2) output += 'font-size: 60%;'
     if (selectedMode >= 3) output += 'font-size: 30%;'
+    if (detonated)
+      output += `
+      background: rgba(255,150,150,0.3);
+      animation: detonation 0.5s ease;
+    `
+    if (highlighted) output += 'animation: pulse 0.5s ease;'
     return output
   }}
 `
