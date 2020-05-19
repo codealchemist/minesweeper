@@ -32,7 +32,7 @@ const App = () => {
             </Sidebar>
 
             <Box padding="1rem" width="100%" height="100%">
-              <h1>Minesweeper</h1>
+              <h1>Mine Finder</h1>
 
               <Route path="/setup">
                 <SetupPage />
