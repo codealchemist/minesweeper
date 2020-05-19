@@ -1,0 +1,33 @@
+{
+  "modes": [
+    {
+      "name": "Easy",
+      "rows": 5,
+      "cols": 5,
+      "mines": 5
+    },
+    {
+      "name": "Medium",
+      "rows": 10,
+      "cols": 10,
+      "mines": 20
+    },
+    {
+      "name": "Hard",
+      "rows": 15,
+      "cols": 15,
+      "mines": 60
+    },
+    {
+      "name": "Hurt me plenty!",
+      "rows": 25,
+      "cols": 25,
+      "mines": 200
+    }
+  ],
+  "misc": {
+    "showMines": false,
+    "showNearbyMines": false
+  },
+  "selectedMode": 0
+}
