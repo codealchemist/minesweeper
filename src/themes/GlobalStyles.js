@@ -146,7 +146,6 @@ export const GlobalStyles = createGlobalStyle`
       filter: blur(1px) brightness(2);
     }
     100% {
-      background-color: ${({ theme }) => theme.highlightAlt300};
       filter: blur(0) brightness(1);
     }
   }

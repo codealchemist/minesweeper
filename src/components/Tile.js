@@ -58,12 +58,7 @@ const Tile = ({
   }, [highlighted])
 
   return (
-    <Box
-      onClick={onClick}
-      onContextMenu={onAddFlag}
-      {...withLongPress}
-      position="relative"
-    >
+    <Box onClick={onClick} onContextMenu={onAddFlag} position="relative">
       <TileBox
         revealed={revealed}
         selectedMode={config.selectedMode}
