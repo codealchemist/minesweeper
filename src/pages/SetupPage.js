@@ -60,7 +60,7 @@ const SetupPage = () => {
     updateConfig(newConfig)
   }
 
-  const onRowsChange = (rows) => {
+  const onRowsChange = async (rows) => {
     if (!isValidNumber(rows)) {
       console.log('Invalid rows:', rows)
       return
@@ -78,11 +78,11 @@ const SetupPage = () => {
         }
       })
     }
-    updateConfig(newConfig)
+    await updateConfig(newConfig)
     newGame()
   }
 
-  const onColsChange = (cols) => {
+  const onColsChange = async (cols) => {
     if (!isValidNumber(cols)) {
       console.log('Invalid cols:', cols)
       return
@@ -100,11 +100,11 @@ const SetupPage = () => {
         }
       })
     }
-    updateConfig(newConfig)
+    await updateConfig(newConfig)
     newGame()
   }
 
-  const onMinesChange = (mines) => {
+  const onMinesChange = async (mines) => {
     if (!isValidNumber(mines)) {
       console.log('Invalid mines:', mines)
       return
@@ -121,9 +121,13 @@ const SetupPage = () => {
         }
       })
     }
-    updateConfig(newConfig)
+    await updateConfig(newConfig)
     newGame()
   }
+
+  useEffect(() => {
+    console.log('CONFIG changed on Setup', config)
+  }, [config])
 
   useEffect(() => {
     const { modes, misc } = config

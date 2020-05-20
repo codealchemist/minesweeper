@@ -39,6 +39,7 @@ addReducer('updateGameState', (global, dispatch, gameState) => {
 addReducer('newGame', (global, dispatch, gameState) => {
   console.log('NEW GAME REDUCER')
   const { config } = getGlobal()
+  console.log('CONFIG', config)
   const { selectedMode } = config
   const { rows, cols, mines } = config.modes[selectedMode]
   if (!rows || !cols || !mines) {

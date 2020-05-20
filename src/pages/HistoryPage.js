@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'reactn'
 import { Page } from 'elements'
 
 const HistoryPage = () => {

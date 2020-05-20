@@ -6,6 +6,7 @@ const GameMessage = () => {
   const [config, setConfig] = useGlobal('config')
 
   useEffect(() => {
+    if (!config.gameMessage) return
     const timer = setTimeout(() => {
       setConfig({
         ...config,

@@ -9,8 +9,6 @@ import game from 'GameLogic'
 const Board = () => {
   const [config] = useGlobal('config')
   const [gameState, setGameState] = useGlobal('gameState')
-  const [rows, setRows] = useState(0)
-  const [cols, setCols] = useState(0)
   const [width, setWidth] = useState()
   const boardRef = createRef()
 
@@ -140,16 +138,6 @@ const Board = () => {
     })
   }
 
-  const init = () => {
-    if (!config) return
-    const { selectedMode } = config
-    const { rows, cols } = config.modes[selectedMode]
-    if (!rows || !cols) return
-
-    setRows(rows)
-    setCols(cols)
-  }
-
   useEffect(() => {
     updateSize()
     window.addEventListener('resize', onResize)
@@ -158,8 +146,7 @@ const Board = () => {
   })
 
   useEffect(() => {
-    console.log('UPDATED CONFIG')
-    init()
+    console.log('CONFIG changed', config)
   }, [config])
 
   return (
@@ -171,8 +158,8 @@ const Board = () => {
       justifyContent="center"
     >
       <GameBoard
-        rows={rows}
-        cols={cols}
+        rows={config.modes[config.selectedMode].rows}
+        cols={config.modes[config.selectedMode].cols}
         width={width}
         locked={gameState.lost || gameState.won}
       >
