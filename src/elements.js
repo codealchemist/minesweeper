@@ -69,6 +69,7 @@ export const TileBox = styled.div`
   position: absolute;
   font-size: 150%;
   transition: all 1s ease;
+  user-select: none;
 
   p {
     margin: 0;
