@@ -7,11 +7,12 @@ import { AiTwotonePlaySquare } from 'react-icons/ai'
 
 const Status = () => {
   const [gameState, setGameState] = useGlobal('gameState')
+  const [lastElapsedTime, setLastElapsedTime] = useGlobal('lastElapsedTime')
   const [elapsedTime, setElapsedTime] = useState(0)
   const [intervalRef, setIntervalRef] = useState()
 
   useEffect(() => {
-    const { startTime, lost, won, lastElapsedTime } = gameState
+    const { startTime, lost, won } = gameState
     console.log('lastElapsedTime', lastElapsedTime, won, lost)
     if (won || lost) {
       if (lastElapsedTime) {
@@ -33,10 +34,7 @@ const Status = () => {
       const elapsed = prettyMs(elapsedMs, { secondsDecimalDigits: 0 })
       setElapsedTime(elapsed)
 
-      // setGameState({
-      //   ...gameState,
-      //   lastElapsedTime: elapsed
-      // })
+      setLastElapsedTime(elapsed)
     }, 1000)
     setIntervalRef(interval)
 
@@ -50,8 +48,8 @@ const Status = () => {
   }, [gameState.won, gameState.lost])
 
   return (
-    <Box display="flex" alignItems="center" justifyContent="center">
-      <Chip icon={<MdTimer />} label={elapsedTime} className="large" />
+    <Box display='flex' alignItems='center' justifyContent='center'>
+      <Chip icon={<MdTimer />} label={elapsedTime} className='large' />
       <Chip icon={<FaFlag />} label={gameState.flagsLeft} />
       <Chip icon={<AiTwotonePlaySquare />} label={gameState.tilesLeft || 0} />
     </Box>
