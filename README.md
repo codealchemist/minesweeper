@@ -13,6 +13,20 @@ You can play it online at:
 
 https://mine-finder.netlify.app/
 
+## Run locally
+
+Clone this repo:
+
+`git clone https://github.com/codealchemist/minesweeper; cd minesweeper`
+
+Install dependencies:
+
+`npm i`
+
+And run it!
+
+`npm start`
+
 ## Game logic
 
 With each turn, the game is validated:
@@ -49,4 +63,4 @@ The app should have routing for different pages:
 
 ## Testing
 
-TODO
+`npm test`
