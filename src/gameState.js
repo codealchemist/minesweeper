@@ -41,6 +41,10 @@ addReducer('newGame', (global, dispatch, gameState) => {
   const { config } = getGlobal()
   const { selectedMode } = config
   const { rows, cols, mines } = config.modes[selectedMode]
+  if (!rows || !cols || !mines) {
+    console.log('Invalid config.', config.modes[selectedMode])
+    return
+  }
 
   game.setBoard(rows, cols)
   const plantedMines = game.plantMines(mines).getMines()

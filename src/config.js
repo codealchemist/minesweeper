@@ -1,10 +1,4 @@
-import React, {
-  useGlobal,
-  useEffect,
-  addCallback,
-  setGlobal,
-  addReducer
-} from 'reactn'
+import React, { setGlobal, addReducer } from 'reactn'
 import store from 'store2'
 import defaultConfig from 'game-config'
 
@@ -17,12 +11,8 @@ export const save = (config) => {
 
 addReducer('updateConfig', (global, dispatch, newConfig) => {
   console.log('CONFIG REDUCER', newConfig)
-  const updatedConfig = {
-    ...config,
-    ...newConfig
-  }
-  save(updatedConfig)
-  return { config: updatedConfig }
+  save(newConfig)
+  return { config: newConfig }
 })
 
 setGlobal({ config })

@@ -15,7 +15,8 @@ import { FaBomb } from 'react-icons/fa'
 
 const SetupPage = () => {
   const updateConfig = useDispatch('updateConfig')
-  const [config] = useGlobal('config')
+  const newGame = useDispatch('newGame')
+  const [config, setConfig] = useGlobal('config')
   const [selectedMode, setSelectedMode] = useState(0)
   const [modes, setModes] = useState([])
   const [rows, setRows] = useState(0)
@@ -33,68 +34,101 @@ const SetupPage = () => {
     return modes[selectedMode][type]
   }
 
+  const isValidNumber = (value) => value.match(/^[0-9]{1,3}$/)
+
   const onShowMinesChange = ({ target: { checked } }) => {
     setShowMines(checked)
-    updateConfig({
+    const newConfig = {
       ...config,
       misc: {
         ...config.misc,
         showMines: checked
       }
-    })
+    }
+    updateConfig(newConfig)
   }
 
   const onShowNearbyMinesChange = ({ target: { checked } }) => {
     setShowNearbyMines(checked)
-    updateConfig({
+    const newConfig = {
       ...config,
       misc: {
         ...config.misc,
         showNearbyMines: checked
       }
-    })
+    }
+    updateConfig(newConfig)
   }
 
   const onRowsChange = (rows) => {
-    setRows(rows)
+    if (!isValidNumber(rows)) {
+      console.log('Invalid rows:', rows)
+      return
+    }
 
-    updateConfig({
+    setRows(rows)
+    const newConfig = {
       ...config,
       modes: config.modes.map((mode, i) => {
         if (selectedMode !== i) return mode
 
         return {
           ...mode,
-          rows
+          rows: parseInt(rows)
         }
       })
-    })
+    }
+    updateConfig(newConfig)
+    newGame()
   }
 
   const onColsChange = (cols) => {
-    setCols(cols)
+    if (!isValidNumber(cols)) {
+      console.log('Invalid cols:', cols)
+      return
+    }
 
-    updateConfig({
+    setCols(cols)
+    const newConfig = {
       ...config,
       modes: config.modes.map((mode, i) => {
         if (selectedMode !== i) return mode
 
         return {
           ...mode,
-          cols
+          cols: parseInt(cols)
         }
       })
-    })
+    }
+    updateConfig(newConfig)
+    newGame()
   }
 
   const onMinesChange = (mines) => {
+    if (!isValidNumber(mines)) {
+      console.log('Invalid mines:', mines)
+      return
+    }
     setMines(mines)
+    const newConfig = {
+      ...config,
+      modes: config.modes.map((mode, i) => {
+        if (selectedMode !== i) return mode
+
+        return {
+          ...mode,
+          mines: parseInt(mines)
+        }
+      })
+    }
+    updateConfig(newConfig)
+    newGame()
   }
 
   useEffect(() => {
     const { modes, misc } = config
     const { showMines, showNearbyMines } = misc
-    setModes(config.modes)
+    setModes(modes)
     setShowMines(showMines)
     setShowNearbyMines(showNearbyMines)
   }, [])

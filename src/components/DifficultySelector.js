@@ -6,11 +6,14 @@ const DifficultySelector = () => {
   const updateConfig = useDispatch('updateConfig')
   const [config] = useGlobal('config')
 
-  const onChange = ({ target: { value } }) => {
+  const onChange = async ({ target: { value } }) => {
     console.log('Selected difficulty:', value)
 
     // Update board.
-    updateConfig({ selectedMode: value })
+    await updateConfig({
+      ...config,
+      selectedMode: value
+    })
     newGame()
   }
 
