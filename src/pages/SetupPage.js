@@ -126,10 +126,6 @@ const SetupPage = () => {
   }
 
   useEffect(() => {
-    console.log('CONFIG changed on Setup', config)
-  }, [config])
-
-  useEffect(() => {
     const { modes, misc } = config
     const { showMines, showNearbyMines } = misc
     setModes(modes)

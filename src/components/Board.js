@@ -36,6 +36,7 @@ const Board = () => {
     // Display all mines.
     setGameState({
       ...gameState,
+      lost: true,
       detonateAll: true
     })
 
@@ -43,8 +44,8 @@ const Board = () => {
     setTimeout(() => {
       setGameState({
         ...gameState,
-        lost: true,
         showModal: true,
+        lost: true,
         detonateAll: true
       })
     }, 3000)
@@ -144,10 +145,6 @@ const Board = () => {
 
     return () => window.removeEventListener('resize', onResize)
   })
-
-  useEffect(() => {
-    console.log('CONFIG changed', config)
-  }, [config])
 
   return (
     <Box
