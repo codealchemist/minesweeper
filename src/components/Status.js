@@ -11,10 +11,14 @@ const Status = () => {
   const [intervalRef, setIntervalRef] = useState()
 
   useEffect(() => {
-    const { startTime } = gameState
+    const { startTime, lost, won } = gameState
     if (!startTime) {
       setElapsedTime(0)
       clearInterval(intervalRef)
+      return
+    }
+
+    if (won || lost) {
       return
     }
 
