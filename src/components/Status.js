@@ -33,10 +33,10 @@ const Status = () => {
       const elapsed = prettyMs(elapsedMs, { secondsDecimalDigits: 0 })
       setElapsedTime(elapsed)
 
-      setGameState({
-        ...gameState,
-        lastElapsedTime: elapsed
-      })
+      // setGameState({
+      //   ...gameState,
+      //   lastElapsedTime: elapsed
+      // })
     }, 1000)
     setIntervalRef(interval)
 

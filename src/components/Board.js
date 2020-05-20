@@ -1,4 +1,10 @@
-import React, { useGlobal, useState, createRef, useEffect } from 'reactn'
+import React, {
+  useGlobal,
+  useState,
+  createRef,
+  useEffect,
+  useDispatch
+} from 'reactn'
 import { Box } from '@material-ui/core'
 import { GameBoard } from 'elements'
 import Tile from 'components/Tile'
@@ -7,6 +13,7 @@ import debounce from 'utils/debounce'
 import game from 'GameLogic'
 
 const Board = () => {
+  const updateGameState = useDispatch('updateGameState')
   const [config] = useGlobal('config')
   const [gameState, setGameState] = useGlobal('gameState')
   const [width, setWidth] = useState()
@@ -106,6 +113,8 @@ const Board = () => {
     }
 
     setGameState(newGameState)
+    console.log('gameState REVEALED TILES', gameState.revealedTiles)
+    console.log('new game state', newGameState)
   }
 
   const flag = (pos) => {
@@ -145,6 +154,10 @@ const Board = () => {
 
     return () => window.removeEventListener('resize', onResize)
   })
+
+  useEffect(() => {
+    console.log('gameState updated')
+  }, [gameState])
 
   return (
     <Box
