@@ -65,7 +65,7 @@ const Tile = ({
         detonated={withMine && detonated}
         highlighted={highlighted}
       >
-        <p>{pos}</p>
+        {config.misc.showNumbers && <p>{pos}</p>}
         {children}
         {flagged && <FaFlag />}
         {(config.misc.showNearbyMines || revealed) && <i>{nearbyMines}</i>}
