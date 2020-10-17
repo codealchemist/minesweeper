@@ -27,7 +27,8 @@
   ],
   "misc": {
     "showMines": false,
-    "showNearbyMines": false
+    "showNearbyMines": false,
+    "showNumbers": false
   },
   "selectedMode": 0
 }

@@ -24,14 +24,10 @@ const SetupPage = () => {
   const [mines, setMines] = useState(0)
   const [showMines, setShowMines] = useState(false)
   const [showNearbyMines, setShowNearbyMines] = useState(false)
+  const [showNumbers, setShowNumbers] = useState(false)
 
   const onTabChange = (e, index) => {
     setSelectedMode(index)
-  }
-
-  const getValue = (type) => {
-    if (!modes[selectedMode]) return 0
-    return modes[selectedMode][type]
   }
 
   const isValidNumber = (value) => value.match(/^[0-9]{1,3}$/)
@@ -55,6 +51,18 @@ const SetupPage = () => {
       misc: {
         ...config.misc,
         showNearbyMines: checked
+      }
+    }
+    updateConfig(newConfig)
+  }
+
+  const onShowNumbersChange = ({ target: { checked } }) => {
+    setShowNumbers(checked)
+    const newConfig = {
+      ...config,
+      misc: {
+        ...config.misc,
+        showNumbers: checked
       }
     }
     updateConfig(newConfig)
@@ -127,13 +135,19 @@ const SetupPage = () => {
 
   useEffect(() => {
     const { modes, misc } = config
-    const { showMines, showNearbyMines } = misc
+    const { showMines, showNearbyMines, showNumbers } = misc
     setModes(modes)
     setShowMines(showMines)
     setShowNearbyMines(showNearbyMines)
-  }, [])
+    setShowNumbers(showNumbers)
+  }, [config])
 
   useEffect(() => {
+    const getValue = (type) => {
+      if (!modes[selectedMode]) return 0
+      return modes[selectedMode][type]
+    }
+
     setRows(getValue('rows'))
     setCols(getValue('cols'))
     setMines(getValue('mines'))
@@ -209,6 +223,18 @@ const SetupPage = () => {
               />
             }
             label="Show nearby mines"
+          />
+
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={showNumbers || false}
+                onChange={onShowNumbersChange}
+                name="showNumbers"
+                color="primary"
+              />
+            }
+            label="Show numbers"
           />
         </Box>
       </Box>
